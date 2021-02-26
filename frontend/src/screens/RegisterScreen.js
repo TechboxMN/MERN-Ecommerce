@@ -6,6 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { register } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
+import { FormControl, Title } from '../components/LoginScreen.style'
 
 const RegisterScreen = ({ location, history }) => {
     const [name, setName] = useState('')
@@ -38,14 +39,13 @@ const RegisterScreen = ({ location, history }) => {
 
     return (
         <FormContainer>
-            <h1>Sign Up</h1>
+            <Title>Sign Up</Title>
             {message && <Message variant='danger'>{message}</Message>}
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='name'>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
+                    <FormControl
                         type='name'
                         placeholder='Enter Name'
                         value={name}
@@ -53,17 +53,15 @@ const RegisterScreen = ({ location, history }) => {
                     />
                 </Form.Group>
                 <Form.Group controlId='email'>
-                    <Form.Label>Email Address</Form.Label>
-                    <Form.Control
+                    <FormControl
                         type='email'
                         placeholder='Enter Email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                    ></Form.Control>
+                    ></FormControl>
                 </Form.Group>
                 <Form.Group controlId='password'>
-                    <Form.Label>Password </Form.Label>
-                    <Form.Control
+                    <FormControl
                         type='password'
                         placeholder='Enter Password'
                         value={password}
@@ -71,13 +69,12 @@ const RegisterScreen = ({ location, history }) => {
                     />
                 </Form.Group>
                 <Form.Group controlId='confirmPassword'>
-                    <Form.Label>Confirm Password </Form.Label>
-                    <Form.Control
+                    <FormControl
                         type='password'
                         placeholder='Confirm Password'
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                    ></Form.Control>
+                    ></FormControl>
                 </Form.Group>
 
                 <Button type='submit' variant='primary'>

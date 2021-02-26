@@ -18,6 +18,9 @@ import UserEditScreen from './screens/UserEditScreen'
 import ProductListScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
+import StaticPage from './components/StaticPage'
+import ImageListScreen from './screens/ImageListScreen'
+import ImageEditScreen from './screens/ImageEditScreen'
 const App = () => {
     return (
         <Router>
@@ -64,8 +67,17 @@ const App = () => {
                         path='/admin/orderlist'
                         component={OrderListScreen}
                     />
+                    <Route
+                        path='/admin/imagelist'
+                        component={ImageListScreen}
+                    />
+                    <Route
+                        path='/admin/image/:id/edit'
+                        component={ImageEditScreen}
+                    />
                 </Container>
             </main>
+            <StaticPage />
             <Footer />
         </Router>
     )

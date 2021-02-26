@@ -10,6 +10,8 @@ import {
 } from '../controllers/orderController.js'
 import { protect, admin } from '../middleware/authMiddleware.js'
 
+//Routes aa zuwhun ordertoi holbootoi routeruudaa ingeed tseverlej bgan.
+
 router.route('/').post(protect, addOrderItems).get(protect, admin, getOrders)
 router.route('/myorders').get(protect, getMyOrders)
 router.route('/:id').get(protect, getOrderById)

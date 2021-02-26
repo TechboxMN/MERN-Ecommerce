@@ -7,8 +7,16 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
 import { listProducts } from '../actions/productActions'
-import ProductCarousel from '../components/ProductCarousel'
+import BannerCarousel from '../components/BannerCarousel'
 import Meta from '../components/Meta'
+import {
+    ProductCol,
+    ProductRow,
+    ProductWrapper,
+    Title,
+} from './HomeScreen.style'
+import StaticBlock from '../components/StaticBlock'
+import Cards from '../components/Cards'
 
 const HomeScreen = ({ match }) => {
     const keyword = match.params.keyword
@@ -28,32 +36,54 @@ const HomeScreen = ({ match }) => {
         <>
             <Meta />
             {!keyword ? (
-                <ProductCarousel />
+                <BannerCarousel />
             ) : (
-                <Link to='/' className='btn btn-light'>
-                    Go Back
-                </Link>
+                <Container>
+                    <Link to='/' className='btn btn-light mt-3 mb-3'>
+                        Go Back
+                    </Link>
+                </Container>
             )}
             {loading ? (
                 <Loader />
             ) : error ? (
                 <Message variant='danger'>{error}</Message>
             ) : (
-                <Container>
-                    <h1>Latest Products</h1>
-                    <Row>
-                        {products.map((product) => (
-                            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                                <Product product={product} />
-                            </Col>
-                        ))}
-                    </Row>
-                    <Paginate
-                        pages={pages}
-                        page={page}
-                        keyword={keyword ? keyword : ''}
-                    />
-                </Container>
+                <>
+                    <Container>
+                        {!keyword ? <Cards /> : <></>}
+
+                        <Title>Эрэлттэй бүтээгдэхүүнүүд</Title>
+                        <ProductRow>
+                            {products.map((product) => (
+                                <ProductCol key={product._id}>
+                                    <Product product={product} />
+                                </ProductCol>
+                            ))}
+                        </ProductRow>
+                    </Container>
+                    {!keyword ? <StaticBlock /> : <></>}
+
+                    {!keyword ? (
+                        <Container>
+                            <Title>Шинээр нэмэгдсэн</Title>
+                            <ProductRow>
+                                {products.map((product) => (
+                                    <ProductCol key={product._id}>
+                                        <Product product={product} />
+                                    </ProductCol>
+                                ))}
+                            </ProductRow>
+                            <Paginate
+                                pages={pages}
+                                page={page}
+                                keyword={keyword ? keyword : ''}
+                            />
+                        </Container>
+                    ) : (
+                        <></>
+                    )}
+                </>
             )}
         </>
     )

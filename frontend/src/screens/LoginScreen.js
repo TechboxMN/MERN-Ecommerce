@@ -6,6 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
+import { FormControl, Title } from '../components/LoginScreen.style'
 
 const LoginScreen = ({ location, history }) => {
     const [email, setEmail] = useState('')
@@ -31,13 +32,12 @@ const LoginScreen = ({ location, history }) => {
 
     return (
         <FormContainer>
-            <h1>Sign in</h1>
+            <Title>Sign in</Title>
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='email'>
-                    <Form.Label>Email Address</Form.Label>
-                    <Form.Control
+                    <FormControl
                         type='email'
                         placeholder='Enter Email'
                         value={email}
@@ -45,8 +45,7 @@ const LoginScreen = ({ location, history }) => {
                     />
                 </Form.Group>
                 <Form.Group controlId='password'>
-                    <Form.Label>Password </Form.Label>
-                    <Form.Control
+                    <FormControl
                         type='password'
                         placeholder='Enter Password'
                         value={password}

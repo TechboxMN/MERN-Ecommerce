@@ -15,7 +15,6 @@ const CartScreen = ({ match, location, history }) => {
     const cart = useSelector((state) => state.cart)
 
     const { cartItems } = cart
-    console.log(cart)
     useEffect(() => {
         if (productId) {
             dispatch(addToCart(productId, qty))
@@ -31,7 +30,7 @@ const CartScreen = ({ match, location, history }) => {
     }
 
     return (
-        <Row>
+        <Row style={{ display: 'flex', alignItems: 'center' }}>
             <Col md={8}>
                 <h1>Shopping Cart</h1>
                 {cartItems.length === 0 ? (
@@ -42,7 +41,12 @@ const CartScreen = ({ match, location, history }) => {
                     <ListGroup variant='flush'>
                         {cartItems.map((item) => (
                             <ListGroup.Item key={item.product}>
-                                <Row>
+                                <Row
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                    }}
+                                >
                                     <Col md={2}>
                                         <Image
                                             src={item.image}

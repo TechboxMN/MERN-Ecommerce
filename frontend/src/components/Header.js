@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import { DarkNavbar, NavbarContainer, NavDropdownUser } from './Header.style'
 import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions'
 
@@ -16,15 +17,15 @@ const Header = () => {
     }
 
     return (
-        <header>
-            <Navbar
+        <>
+            <DarkNavbar
                 bg='light'
                 variant='light'
                 expand='lg'
                 collapseOnSelect
                 className='navbar'
             >
-                <Container>
+                <NavbarContainer>
                     <LinkContainer to='/'>
                         <Navbar.Brand>
                             <img src='/images/logo.png' alt='logo' />
@@ -46,12 +47,12 @@ const Header = () => {
                         <Nav className='ml-auto'>
                             <LinkContainer to='/cart'>
                                 <Nav.Link>
-                                    <i className='fas fa-box-open'></i>
+                                    <i class='ri-shopping-bag-3-line'></i>
                                 </Nav.Link>
                             </LinkContainer>
                             {userInfo ? (
-                                <NavDropdown
-                                    title={userInfo.name}
+                                <NavDropdownUser
+                                    title={<i class='ri-user-6-line'></i>}
                                     id='username'
                                 >
                                     <LinkContainer to='/profile'>
@@ -62,16 +63,19 @@ const Header = () => {
                                     <NavDropdown.Item onClick={logoutHandler}>
                                         Logout
                                     </NavDropdown.Item>
-                                </NavDropdown>
+                                </NavDropdownUser>
                             ) : (
                                 <LinkContainer to='/login'>
                                     <Nav.Link>
-                                        <i className='fas fa-user'></i>
+                                        <i class='ri-user-6-line'></i>
                                     </Nav.Link>
                                 </LinkContainer>
                             )}
                             {userInfo && userInfo.isAdmin && (
-                                <NavDropdown title='Admin' id='adminMenu'>
+                                <NavDropdownUser
+                                    title={<i class='ri-admin-line'></i>}
+                                    id='adminMenu'
+                                >
                                     <LinkContainer to='/admin/userlist'>
                                         <NavDropdown.Item>
                                             Users
@@ -87,13 +91,18 @@ const Header = () => {
                                             Orders
                                         </NavDropdown.Item>
                                     </LinkContainer>
-                                </NavDropdown>
+                                    <LinkContainer to='/admin/imagelist'>
+                                        <NavDropdown.Item>
+                                            Images
+                                        </NavDropdown.Item>
+                                    </LinkContainer>
+                                </NavDropdownUser>
                             )}
                         </Nav>
                     </Navbar.Collapse>
-                </Container>
-            </Navbar>
-        </header>
+                </NavbarContainer>
+            </DarkNavbar>
+        </>
     )
 }
 

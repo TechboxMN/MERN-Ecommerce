@@ -62,10 +62,13 @@ const PlaceOrderScreen = ({ history }) => {
                             <h2>Shipping</h2>
                             <p>
                                 <strong>Address: </strong>
-                                {cart.shippingAddress.address},
-                                {cart.shippingAddress.city},
-                                {cart.shippingAddress.postalCode},
-                                {cart.shippingAddress.country},
+                                {cart.shippingAddress.city}
+                                {cart.shippingAddress.ditsrict},
+                                {cart.shippingAddress.subDistrict},
+                                {cart.shippingAddress.town},
+                                {cart.shippingAddress.building},
+                                {cart.shippingAddress.doorNumber},
+                                {cart.shippingAddress.extraInfo}
                             </p>
                         </ListGroup.Item>
                         <ListGroup.Item>
@@ -140,11 +143,9 @@ const PlaceOrderScreen = ({ history }) => {
                                     <Col>${cart.totalPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
-                            <ListGroup.Item>
-                                {error && (
-                                    <Message variant='danger'>{error}</Message>
-                                )}
-                            </ListGroup.Item>
+                            {error && (
+                                <Message variant='danger'>{error}</Message>
+                            )}
                             <ListGroup.Item>
                                 <Button
                                     type='button'

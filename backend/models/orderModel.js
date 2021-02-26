@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 
+//Model deeree GraphQl iin type bichdeg shig ingeed schema zuraad tgeed type-aa bichchihne
+
 const orderSchema = mongoose.Schema(
     {
         user: {
@@ -21,10 +23,13 @@ const orderSchema = mongoose.Schema(
             },
         ],
         shippingAddress: {
-            address: { type: String, required: true },
             city: { type: String, required: true },
-            postalCode: { type: String, required: true },
-            country: { type: String, required: true },
+            district: { type: String, required: true },
+            subDistrict: { type: String, required: true },
+            town: { type: String, required: true },
+            building: { type: String, required: true },
+            doorNumber: { type: String, required: true },
+            extraInfo: { type: String, required: true },
         },
         paymentMethod: {
             type: String,

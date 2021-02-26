@@ -1,18 +1,47 @@
 import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import {
+    FacebookButton,
+    FooterContainer,
+    FooterLogo,
+    FooterSpan,
+    InstagramButton,
+    SocialButtons,
+    TwitterButton,
+} from './Footer.style'
 
 const Footer = () => {
     return (
-        <footer>
-            <div className='footercontainer'>
+        <>
+            <FooterContainer>
                 <Row>
-                    <Col className='footerlogo'>Electro</Col>
+                    <Link to='/'>
+                        <FooterLogo>Electro</FooterLogo>
+                    </Link>
                 </Row>
                 <Row>
-                    <Col className='footerspan'>Copyright &copy; Margusoe</Col>
+                    <FooterSpan>Copyright &copy; Margusoe</FooterSpan>
                 </Row>
-            </div>
-        </footer>
+                <SocialButtons>
+                    <a href='https://www.facebook.com/'>
+                        <FacebookButton>
+                            <i class='ri-facebook-circle-fill'></i>
+                        </FacebookButton>
+                    </a>
+                    <a href='https://www.instagram.com/'>
+                        <InstagramButton>
+                            <i class='ri-instagram-fill'></i>
+                        </InstagramButton>
+                    </a>
+                    <a href='https://www.twitter.com/'>
+                        <TwitterButton>
+                            <i class='ri-twitter-fill'></i>
+                        </TwitterButton>
+                    </a>
+                </SocialButtons>
+            </FooterContainer>
+        </>
     )
 }
 
